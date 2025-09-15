@@ -5,27 +5,25 @@ Version      : 1.0.1
 Author       : zzz
 Date         : 2025-04-30 16:30:22
 LastEditors  : zzz
-LastEditTime : 2025-09-13 15:35:52
+LastEditTime : 2025-09-15 09:01:07
 """
 
 import logging
 
-from app.config import settings
-from app.constants import error_code
-from app.demo.router import router as demo_router
-from app.log import LOGGING_CONFIG
-from app.response import ResponseModel
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import HTTPException, RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 
+from app.config import settings
+from app.constants import error_code
+from app.demo.router import router as demo_router
+from app.log import LOGGING_CONFIG
+from app.response import ResponseModel
+
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger("dj")
-
-def custom_generate_unique_id(route: APIRoute) -> str:
-    return f"{route.tags[0]}-{route.name}"
 
 
 # if settings.SENTRY_DSN and settings.ENVIRONMENT != "local":
@@ -46,7 +44,6 @@ responses = {
 app = FastAPI(
     title=settings.APPLICATION_NAME,
     openapi_url=f"{settings.API_V1_STR}/openapi.json" if is_show_docs else None,
-    generate_unique_id_function=custom_generate_unique_id,
     responses=responses,
 )
 
@@ -109,11 +106,14 @@ async def request_validation_error_handler(
 async def log_request(request: Request, call_next):
     link_id = request.headers.get("linkid")
     if request.method == "POST":
-        logger.info(f"Request: {request.method} {request.url} {await request.json()}", link_id=link_id)
+        logger.info(
+            f"Request: {request.method} {request.url} {await request.json()}",
+            link_id=link_id,
+        )
     else:
-        logger.info(f"Request: {request.method} {request.url}", extra={
-            "linkid": link_id
-        })
+        logger.info(
+            f"Request: {request.method} {request.url}", extra={"linkid": link_id}
+        )
     response = await call_next(request)
     return response
 
