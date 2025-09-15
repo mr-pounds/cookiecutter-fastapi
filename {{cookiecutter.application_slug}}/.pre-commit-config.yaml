@@ -30,7 +30,7 @@ repos:
         name: isort
         stages: [commit]
         language: system
-        entry: pipenv run isort {{cookiecutter.project_slug}}/app
+        entry: pipenv run isort {{cookiecutter.application_slug}}/app
         types: [python]
       - id: mypy
         name: mypy
