@@ -4,7 +4,7 @@ Version      : 1.0.1
 Author       : zzz
 Date         : 2025-09-16 17:11:33
 LastEditors  : zzz
-LastEditTime : 2025-09-16 17:17:02
+LastEditTime : 2025-09-16 17:27:47
 """
 
 warn = """
@@ -13,3 +13,5 @@ warn = """
 2. uv sync
 3. uv run pre-commit --all-files
 """
+
+print(warn)
