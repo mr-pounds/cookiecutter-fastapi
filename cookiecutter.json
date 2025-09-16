@@ -1,10 +1,10 @@
 {
   "application_name": "Name of the project",
-  "application_code": "APPLICATION_CODE",
+  "application_code": "Code of the project",
   "application_slug": "{{ cookiecutter.application_name.lower().replace(' ', '-') }}",
   "application_short_description": "A short description of the project",
-  "error_code_prefix_aa": "11",
-  "error_code_prefix_bb": "22",
+  "error_code_prefix_aa": "算法场景编码",
+  "error_code_prefix_bb": "算法函数编码",
   "full_name": "Your name",
   "email": "your.email@example.com",
   "version": "0.1.0"

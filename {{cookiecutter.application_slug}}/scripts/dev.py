@@ -1,11 +1,12 @@
 """
-Description  : 
+Description  :
 Version      : 1.0.1
 Author       : zzz
 Date         : 2025-09-13 13:39:22
 LastEditors  : zzz
-LastEditTime : 2025-09-13 13:41:32
+LastEditTime : 2025-09-16 17:04:17
 """
+
 import subprocess
 import sys
 
@@ -14,17 +15,21 @@ def main():
     # 构建启动FastAPI开发服务器的命令
     command = [
         sys.executable,  # 使用当前Python解释器
-        '-m', 'uvicorn',
-        'app.main:app',  # FastAPI应用位置
-        '--host', '127.0.0.1',  # 默认主机
-        '--port', '8000',        # 默认端口
-        '--env-file', '.env.dev', # 加载.env.dev文件
-        '--reload',      # 启用自动重载
+        "-m",
+        "uvicorn",
+        "app.main:app",  # FastAPI应用位置
+        "--host",
+        "0.0.0.0",  # 默认主机
+        "--port",
+        "8000",  # 默认端口
+        "--env-file",
+        ".env.dev",  # 加载.env.dev文件
+        "--reload",  # 启用自动重载
     ]
-    
+
     print("启动FastAPI开发服务器 (使用环境文件: .env.dev)")
     print(f"命令: {' '.join(command)}")
-    
+
     try:
         # 执行命令
         subprocess.run(command, check=True)
@@ -36,5 +41,5 @@ def main():
         sys.exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
