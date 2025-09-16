@@ -1,11 +1,25 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
-  - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.7.4
+  - repo: local
     hooks:
+      - id: pip-compile
+        name: pip-compile
+        description: "Automatically run 'uv pip compile' on your requirements"
+        entry: uv pip compile
+        language: python
+        files: ^requirements\.(in|txt)$
+        args: []
+        additional_dependencies: []
       - id: uv-lock
-      - id: uv-export
+        name: uv-lock
+        description: "Automatically run 'uv lock' on your project dependencies"
+        entry: uv lock
+        language: python
+        files: ^(uv\.lock|pyproject\.toml|uv\.toml)$
+        args: []
+        pass_filenames: false
+        additional_dependencies: []
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
@@ -29,39 +43,6 @@ repos:
         args:
           - --fix
       - id: ruff-format
-  - repo: local
-    hooks:
-      - id: isort
-        name: isort
-        stages: [commit]
-        language: system
-        entry: pipenv run isort {{cookiecutter.application_slug}}/app
-        types: [python]
-      - id: mypy
-        name: mypy
-        stages: [commit]
-        language: system
-        entry: pipenv run mypy
-        types: [python]
-        pass_filenames: false
-      - id: pytest
-        name: pytest
-        stages: [commit]
-        language: system
-        entry: pipenv run pytest
-        types: [python]
-      - id: pytest-cov
-        name: pytest
-        stages: [push]
-        language: system
-        entry: pipenv run pytest --cov --cov-fail-under=100
-        types: [python]
-        pass_filenames: false
-      - id: generate-requirements
-        name: Generate requirements.txt
-        entry: uv pip compile pyproject.toml -o requirements.txt
-        language: system
-        files: ^pyproject\.toml$
 
 ci:
   autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
