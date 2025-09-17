@@ -20,13 +20,25 @@ repos:
         files: ^(uv\.lock)$
         args: []
         additional_dependencies: []
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.2.2
-    hooks:
-      - id: ruff
-        args:
-          - --fix
+      - id: ruff-check
+        name: ruff check
+        description: "Run 'ruff check' for extremely fast Python linting"
+        entry: ruff check --force-exclude
+        language: python
+        types_or: [python, pyi, jupyter]
+        args: []
+        require_serial: true
+        additional_dependencies: []
       - id: ruff-format
+        name: ruff format
+        description: "Run 'ruff format' for extremely fast Python formatting"
+        entry: ruff format --force-exclude
+        language: python
+        types_or: [python, pyi, jupyter]
+        args: []
+        require_serial: true
+        additional_dependencies: []
+
 
 ci:
   autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
