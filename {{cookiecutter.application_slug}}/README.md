@@ -131,13 +131,13 @@ $ uv run pre-commit run --all-files
       name: isort
       stages: [commit]
       language: python
-      entry: uv run isort {{cookiecutter.project_slug}}
+      entry: uv run isort {{cookiecutter.application_slug}}
       types: [python]
     - id: flake8 # 检查代码风格
       name: flake8
       stages: [commit]
       language: python
-      entry: uv run flake8 {{cookiecutter.project_slug}}
+      entry: uv run flake8 {{cookiecutter.application_slug}}
       types: [python]
       exclude: setup.py
     - id: mypy # 类型检查
