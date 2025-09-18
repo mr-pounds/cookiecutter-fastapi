@@ -10,10 +10,10 @@ RUN pip install --upgrade pip && \
     uv pip install -e .  # Installs dependencies using uv
 
 ARG DEV=false
-RUN if [ "$DEV" = "true" ] ; then uv pip install -e .[dev] ; fi
+RUN uv sync
 
 COPY ./app/ ./
 
 ENV PYTHONPATH "${PYTHONPATH}:/app"
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--env-file", ".env.prod", "--workers", "2"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--env-file", ".env.prod", "--workers", "2", "--timeout-keep-alive", "900"]
