@@ -1,11 +1,12 @@
 """
-Description  : 
+Description  :
 Version      : 1.0.1
 Author       : zzz
 Date         : 2025-09-13 12:33:26
 LastEditors  : zzz
-LastEditTime : 2025-09-13 14:54:30
+LastEditTime : 2025-09-18 10:17:07
 """
+
 from typing import Annotated, Any, Literal
 
 from pydantic import AnyUrl, BeforeValidator, computed_field
@@ -26,7 +27,7 @@ class Settings(BaseSettings):
         env_ignore_empty=True,
         extra="ignore",
     )
-    
+
     APPLICATION_CODE: str = ""
     APPLICATION_NAME: str = ""
 
@@ -42,7 +43,7 @@ class Settings(BaseSettings):
     def all_cors_origins(self) -> list[str]:
         return [str(origin).rstrip("/") for origin in self.BACKEND_CORS_ORIGINS]
 
-    DATABASE_TYPE: Literal["postgres", "mysql", None] = "sqlite3"
+    DATABASE_TYPE: Literal["postgres", "mysql", None] = "postgres"
     POSTGRES_SERVER: str = ""
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str = ""
@@ -56,7 +57,6 @@ class Settings(BaseSettings):
 
     ERROR_CODE_PREFIX_AA: str = ""
     ERROR_CODE_PREFIX_BB: str = ""
-
 
 
 settings = Settings()  # type: ignore

@@ -5,7 +5,7 @@ Version      : 1.0.1
 Author       : zzz
 Date         : 2025-04-28 19:35:21
 LastEditors  : zzz
-LastEditTime : 2025-09-13 12:42:18
+LastEditTime : 2025-09-18 10:17:14
 """
 
 from sqlalchemy.engine import URL
@@ -36,3 +36,5 @@ match settings.DATABASE_TYPE:
                 database=settings.MYSQL_DB,
             ),
         )
+    case _:
+        raise ValueError(f"Unknown database type: {settings.DATABASE_TYPE}")

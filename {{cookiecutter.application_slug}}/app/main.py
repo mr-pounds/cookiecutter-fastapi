@@ -5,24 +5,23 @@ Version      : 1.0.1
 Author       : zzz
 Date         : 2025-04-30 16:30:22
 LastEditors  : zzz
-LastEditTime : 2025-09-15 09:01:07
+LastEditTime : 2025-09-18 10:17:28
 """
 
 import logging
+from logging.config import dictConfig
 
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import HTTPException, RequestValidationError
 from fastapi.responses import JSONResponse
-from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.constants import error_code
 from app.demo.router import router as demo_router
 from app.log import LOGGING_CONFIG
 from app.response import ResponseModel
 
-logging.config.dictConfig(LOGGING_CONFIG)
+dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger("dj")
 
 
@@ -59,7 +58,7 @@ if settings.all_cors_origins:
 
 
 @app.exception_handler(HTTPException)
-async def http_exception_handler(_: Request, exc: HTTPException) -> ResponseModel[None]:
+async def http_exception_handler(_: Request, exc: HTTPException) -> JSONResponse:
     """将HTTPException的格式转化为统一的数据格式，方便前端处理。
     Args:
         _ (Request): _description_
@@ -82,7 +81,7 @@ async def http_exception_handler(_: Request, exc: HTTPException) -> ResponseMode
 @app.exception_handler(RequestValidationError)
 async def request_validation_error_handler(
     _: Request, exc: RequestValidationError
-) -> ResponseModel[None]:
+) -> JSONResponse[None]:
     """将 RequestValidationError 的格式转化为统一的数据格式，方便前端处理。
     Args:
         _ (Request): _description_
@@ -108,7 +107,7 @@ async def log_request(request: Request, call_next):
     if request.method == "POST":
         logger.info(
             f"Request: {request.method} {request.url} {await request.json()}",
-            link_id=link_id,
+            extra={"linkid": link_id},
         )
     else:
         logger.info(
