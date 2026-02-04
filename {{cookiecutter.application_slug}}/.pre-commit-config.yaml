@@ -20,6 +20,19 @@ repos:
         files: ^(uv\.lock)$
         args: []
         additional_dependencies: []
+      - id: isort # 排序导入
+        name: isort
+        stages: [commit]
+        language: python
+        entry: uv run isort app
+        types: [python]
+      - id: mypy # 类型检查
+        name: mypy
+        stages: [commit]
+        language: python
+        entry: uv run mypy
+        types: [python]
+        pass_filenames: false
       - id: ruff-check
         name: ruff check
         description: "Run 'ruff check' for extremely fast Python linting"
@@ -38,6 +51,20 @@ repos:
         args: []
         require_serial: true
         additional_dependencies: []
+      - id: pytest # 测试
+        name: pytest
+        stages: [commit]
+        language: python
+        entry: uv run pytest
+        types: [python]
+      - id: pytest-cov # 测试覆盖率
+        name: pytest
+        stages: [push]
+        language: python
+        entry: uv run pytest --cov --cov-fail-under=100
+        types: [python]
+        pass_filenames: false
+      
 
 
 ci:

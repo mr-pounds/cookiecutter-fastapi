@@ -23,14 +23,14 @@ def main():
         "--port",
         "8000",  # 默认端口
         "--env-file",
-        ".env.prod",  # 加载.env.dev文件
+        ".env.pro",  # 加载.env.dev文件
         "--worker",
         "4",
         "--timeout-keep-alive",
         "900",
     ]
 
-    print("启动FastAPI开发服务器 (使用环境文件: .env.prod)")
+    print("启动FastAPI开发服务器 (使用环境文件: .env.pro)")
     print(f"命令: {' '.join(command)}")
 
     try:

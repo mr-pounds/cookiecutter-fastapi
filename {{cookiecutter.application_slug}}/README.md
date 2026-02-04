@@ -186,5 +186,4 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --env-file .env.prod --workers 4
 
 ## 其他注意事项
 
-- `./doc/styles` 目录下的文件，是为 Vide Coding 提供的文档，包括一些示例。使用时，可引入文档内容来补充风格要求，确保AI能按照文档中的要求进行编码。
 - `notebooks` 目录下用于存放算法测试和验证的文件，上传时尽量不要上传数据集或模型，请根据自己的习惯修改 `.gitignore`.

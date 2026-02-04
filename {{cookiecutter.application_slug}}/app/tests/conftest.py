@@ -1,31 +1,32 @@
 """
-Name         :
-Description  :
-Version      : 1.0.1
-Author       : zzz
-Date         : 2025-04-30 16:30:22
-LastEditors  : zzz
-LastEditTime : 2025-09-13 13:48:30
+测试配置文件
+
+提供测试所需的 fixtures 和配置
 """
 
+import uuid
 from collections.abc import Generator
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import Session
+from sqlalchemy.orm import Session
 
-from app.db import engine
+from app.database.db import sync_db_session
 from app.main import app
 
 
 @pytest.fixture(scope="session", autouse=True)
 def db() -> Generator[Session, None, None]:
-    with Session(engine) as session:
+    with sync_db_session() as session:
         yield session
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function", autouse=True)
+def uid() -> str:
+    return uuid.uuid4().hex[:2]
+
+
+@pytest.fixture(scope="function")
 def client() -> Generator[TestClient, None, None]:
     with TestClient(app) as c:
         yield c
-

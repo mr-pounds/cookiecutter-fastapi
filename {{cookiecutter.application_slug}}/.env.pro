@@ -1,0 +1,51 @@
+# Domain
+# This would be set to the production domain with an env var on deployment
+# used by Traefik to transmit traffic and aqcuire TLS certificates
+DOMAIN=localhost
+# To test the local Traefik config
+# DOMAIN=localhost.tiangolo.com
+
+# Environment: local, staging, production
+ENVIRONMENT=local
+
+# Base
+APPLICATION_NAME={{cookiecutter.application_name}}
+APPLICATION_CODE={{cookiecutter.application_code}}
+
+# Backend
+BACKEND_CORS_ORIGINS="http://localhost,http://localhost:8000,https://localhost,https://localhost:8000,http://localhost.tiangolo.com,http://0.0.0.0:8000"
+
+# Postgres Database
+POSTGRES_SERVER=172.16.2.1
+POSTGRES_PORT=5432
+POSTGRES_DB=czgl
+POSTGRES_USER=djpgsql_kpathm
+POSTGRES_PASSWORD=9bMy*3gGUTskX%Na
+DATABASE_ECHO=False
+DATABASE_POOL_ECHO=False
+
+# Api Version
+API_V1_STR=/api/v1
+
+# Redis Configuration
+PYTHON_REDIS_HOST=r-bp11k3wtzr670x8a1z.redis.rds.aliyuncs.com
+PYTHON_REDIS_PORT=6379
+PYTHON_REDIS_PASSWORD=djaiotservice:Dongjing@aiotservice
+PYTHON_REDIS_DATABASE=1
+PYTHON_REDIS_TIMEOUT=5
+
+# 短信服务配置
+SMS_API_URL=http://djmsgpushserver/djmsgpushserver/sendSms.do
+SMS_TEMPLATE_CODE=SMS_500810224
+
+# 验证码配置
+VERIFICATION_CODE_LENGTH=6
+VERIFICATION_CODE_EXPIRE_MINUTES=6
+VERIFICATION_CODE_INTERVAL_MINUTES=5
+
+# Token 配置
+TOKEN_EXPIRE_DAYS=2
+
+# Logs
+LOG_ACCESS_FILENAME=access.log
+LOG_ERROR_FILENAME=error.log
