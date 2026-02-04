@@ -5,6 +5,7 @@ description = "{{cookiiecutter.application_short_description}}"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "alembic>=1.17.2",
     "fastapi[standard]>=0.116.1",
     "psycopg[binary]>=3.1.0,<3.3.0",
     "pydantic-settings>=2.10.1",
@@ -16,8 +17,6 @@ dependencies = [
     {{ {% if cookiecutter.use_adk == "yes" %}
     "google-adk==1.20.0",
     "litellm==1.80.8",
-    {% endif %}
-    {{ {% if cookiecutter.use_ag_ui == "yes" %}
     "ag-ui-adk==0.4.0",
     {% endif %}
 ]

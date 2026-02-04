@@ -19,5 +19,5 @@ pip install cookiecutter
 ### 如何生成FastAPI项目？
 
 ```bash
-cookiecutter url
+cookiecutter https://github.com/mr-pounds/cookiecutter-fastapi.git
 ```

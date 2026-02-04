@@ -7,3 +7,4 @@ DOC_DIR = PROJECT_ROOT_DIR / "doc"
 LOG_DIR: Path = PROJECT_ROOT_DIR / "logs"
 
 APP_NAME = settings.APPLICATION_NAME
+ALEMBIC_VERSION_DIR = PROJECT_ROOT_DIR / 'alembic' / 'versions'
