@@ -11,7 +11,8 @@ warn = """
 项目创建完成，建议执行如下命令:
 1. cd {{cookiecutter.application_slug}}
 2. uv sync
-3. uv run pre-commit --all-files
+3. git init
+4. uv run pre-commit install
 """
 
 print(warn)
