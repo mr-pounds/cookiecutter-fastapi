@@ -1,7 +1,7 @@
 [project]
-name = "{{cookiiecutter.application_name}}"
-version = "{{cookiiecutter.version}}"
-description = "{{cookiiecutter.application_short_description}}"
+name = "{{cookiecutter.application_name}}"
+version = "{{cookiecutter.version}}"
+description = "{{cookiecutter.application_short_description}}"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -19,7 +19,7 @@ dependencies = [
     "ag-ui-adk==0.4.0",
 ]
 authors = [
-    {name = "{{cookiiecutter.author}}", email = "{{cookiiecutter.email}}"},
+    {name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}"},
 ]
 
 [tool.uv]
