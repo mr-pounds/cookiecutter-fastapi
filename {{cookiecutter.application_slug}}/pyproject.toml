@@ -14,11 +14,9 @@ dependencies = [
     "redis==7.1.0",
     "sqlalchemy==2.0",
     "requests==2.28.1",
-    {{ {% if cookiecutter.use_adk == "yes" %}
     "google-adk==1.20.0",
     "litellm==1.80.8",
     "ag-ui-adk==0.4.0",
-    {% endif %}
 ]
 authors = [
     {name = "{{cookiiecutter.author}}", email = "{{cookiiecutter.email}}"},

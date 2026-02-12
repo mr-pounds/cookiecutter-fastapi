@@ -3,7 +3,6 @@
   "application_code": "Code of the project",
   "application_slug": "{{ cookiecutter.application_name.lower().replace(' ', '-') }}",
   "application_short_description": "A short description of the project",
-  "use_adk": "yes",
   "author": "Your name",
   "email": "your.email@example.com",
   "version": "1.0.1"
